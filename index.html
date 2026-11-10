@@ -3,13 +3,16 @@
 <style>
 :root{--p:#6958e8;--ink:#1c2440;--muted:#7c849b;--line:#e9ebf4;--bg:#f6f7fc}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}.layout{display:grid;grid-template-columns:230px 1fr;min-height:100vh}.side{background:white;border-right:1px solid var(--line);padding:25px 16px;position:sticky;top:0;height:100vh}.brand{font-size:22px;font-weight:850;padding:0 10px 30px;letter-spacing:-1px}.mark{display:inline-grid;place-items:center;background:linear-gradient(135deg,#6655e8,#a06cf2);color:white;width:36px;height:36px;border-radius:12px;margin-right:8px}.label{font-size:10px;letter-spacing:1.4px;color:#a0a7b8;padding:8px 12px}.nav button{display:block;width:100%;border:0;background:none;color:#707a92;text-align:left;padding:12px;border-radius:11px;margin:3px 0;font-weight:650}.nav button.active,.nav button:hover{background:#f0efff;color:var(--p)}.sidefoot{position:absolute;bottom:22px;left:25px;right:25px;background:#f4f1ff;color:#6958d8;border-radius:13px;padding:13px;font-size:12px}.main{padding:30px clamp(16px,4vw,48px);max-width:1450px;width:100%;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.muted{color:var(--muted);font-size:12px}.top h1{font-size:25px;margin:2px 0;letter-spacing:-.8px}.avatar{background:#eae7ff;color:#6858df;border-radius:50%;width:40px;height:40px;display:grid;place-items:center;font-weight:800}.hero{background:linear-gradient(110deg,#6052df,#9164ee);color:white;border-radius:20px;padding:26px 28px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;gap:12px}.hero h2{margin:0 0 5px;font-size:23px}.hero p{margin:0;color:#efedff}.date{background:#ffffff22;padding:8px 12px;border-radius:30px;font-size:12px;white-space:nowrap}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:20px}.card,.stat{background:white;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 8px 25px #26345b08}.stat .muted{display:flex;justify-content:space-between}.stat strong{font-size:26px;display:block;margin:6px 0}.green{color:#16a477;font-size:11px}.columns{display:grid;grid-template-columns:1.25fr .9fr;gap:16px}.card{margin-bottom:16px}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.head h3{margin:0;font-size:16px}.btn{background:var(--p);color:white;border:0;border-radius:10px;padding:9px 13px;font-weight:700}.btn.alt{background:#f0efff;color:var(--p)}.btn.sm{font-size:12px;padding:7px 10px}.view{display:none}.view.active{display:block}.field{border:1px solid var(--line);border-radius:10px;padding:11px;width:100%;outline:none}.field:focus{border-color:#9b90f4}.form{display:flex;gap:8px;margin:12px 0}.task,.habit,.routine,.goal{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #f0f1f6}.task:last-child,.habit:last-child,.routine:last-child,.goal:last-child{border:0}.taskname,.habitname{flex:1}.taskname.done{text-decoration:line-through;color:#a0a7b7}.check{width:19px;height:19px;border:1px solid #cbd0df;border-radius:6px;background:white;color:white}.check.done{background:#16a477;border-color:#16a477}.tag{font-size:10px;background:#f1efff;color:#6b5bdd;padding:4px 8px;border-radius:20px}.del{border:0;background:none;color:#a1a8b7}.progress{height:7px;background:#eff0f6;border-radius:20px;overflow:hidden;margin-top:7px}.progress span{display:block;height:100%;background:linear-gradient(90deg,#6858e8,#a279f2)}.habitname{font-weight:650}.habitname small{display:block;color:var(--muted);font-weight:400}.quickgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.quick{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px;text-align:left;color:var(--ink)}.quick b{display:block;margin:5px 0}.quick small{color:var(--muted)}.empty{text-align:center;color:var(--muted);padding:22px 8px;font-size:13px}.goal{display:block}.goalrow{display:flex;justify-content:space-between;font-weight:650}.goalrow small{color:var(--muted)}input[type=range]{width:100%;accent-color:var(--p)}.timer{text-align:center;padding:25px}.clock{font-size:54px;font-weight:850;letter-spacing:-2px;margin:12px}.decisionout{display:none;background:#f2f0ff;color:#5145bd;padding:12px;border-radius:10px;margin-top:10px}.footer{text-align:center;color:#a2a8b6;font-size:11px;padding:18px}
 @media(max-width:800px){.layout{grid-template-columns:1fr}.side{height:auto;position:sticky;z-index:5;padding:10px 12px;border:0;border-bottom:1px solid var(--line)}.brand{padding:0 5px 8px}.label,.sidefoot{display:none}.nav{display:flex;overflow:auto;gap:3px}.nav button{white-space:nowrap;width:auto;padding:9px;font-size:12px;margin:0}.main{padding:18px 13px}.columns{grid-template-columns:1fr}.hero{align-items:flex-start;flex-direction:column}.stats{grid-template-columns:repeat(2,1fr)}.stat{padding:13px}}
-</style></head><body><div class="layout"><aside class="side"><div class="brand"><span class="mark">L</span>LifePilot</div><div class="label">YOUR WORKSPACE</div><nav class="nav"><button class="active" data-view="dashboard">⌂ &nbsp; Dashboard</button><button data-view="planner">▤ &nbsp; Daily Planner</button><button data-view="habits">✦ &nbsp; Habits</button><button data-view="goals">◎ &nbsp; Goals</button><button data-view="routines">◷ &nbsp; Routines</button><button data-view="focus">✧ &nbsp; Focus & Decisions</button></nav><div class="sidefoot">✦ Small steps make remarkable progress.<br><b>Make today count.</b></div></aside><main class="main"><header class="top"><div><div class="muted" id="today"></div><h1 id="title">Good day. Let's make it count.</h1></div><div class="avatar">LP</div></header>
+
+.authbar{background:#fff;border:1px solid var(--line);border-radius:15px;padding:14px 16px;margin:0 0 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.authbar .authmeta{flex:1;min-width:150px}.authbar input{max-width:220px}.authstatus{font-size:12px;color:var(--muted);width:100%}.authbar .btn:disabled{opacity:.55;cursor:wait}
+</style></head><body><div class="layout"><aside class="side"><div class="brand"><span class="mark">L</span>LifePilot</div><div class="label">YOUR WORKSPACE</div><nav class="nav"><button class="active" data-view="dashboard">⌂ &nbsp; Dashboard</button><button data-view="planner">▤ &nbsp; Daily Planner</button><button data-view="habits">✦ &nbsp; Habits</button><button data-view="goals">◎ &nbsp; Goals</button><button data-view="routines">◷ &nbsp; Routines</button><button data-view="focus">✧ &nbsp; Focus & Decisions</button></nav><div class="sidefoot">✦ Small steps make remarkable progress.<br><b>Make today count.</b></div></aside><main class="main"><header class="top"><div><div class="muted" id="today"></div><h1 id="title">Good day. Let's make it count.</h1></div><div class="avatar">LP</div></header><section class="authbar"><div class="authmeta"><b>☁ LifePilot account & sync</b><div class="muted" id="authUser">Sign in to sync your planner across devices.</div></div><input class="field" id="authEmail" type="email" autocomplete="email" placeholder="Email address" aria-label="Email address"><input class="field" id="authPassword" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password"><button class="btn sm" id="signInBtn">Sign in</button><button class="btn alt sm" id="signUpBtn">Create account</button><button class="btn alt sm" id="signOutBtn" hidden>Sign out</button><div class="authstatus" id="authStatus" role="status">Your existing browser data stays on this device until you sign in and sync.</div></section>
 <section class="view active" id="dashboard"><div class="hero"><div><h2>Plan with purpose. Progress with ease.</h2><p>A little progress every day adds up to big results.</p></div><div class="date" id="date"></div></div><div class="stats"><div class="stat"><div class="muted">Tasks completed</div><strong id="sTasks">0/0</strong><span class="green">Keep moving forward</span></div><div class="stat"><div class="muted">Active habits</div><strong id="sHabits">0</strong><span class="green">Build consistency</span></div><div class="stat"><div class="muted">Goals in progress</div><strong id="sGoals">0</strong><span class="green">One step at a time</span></div><div class="stat"><div class="muted">Focus minutes</div><strong id="sFocus">0</strong><span class="green">Be present</span></div></div><div class="columns"><div><div class="card"><div class="head"><div><h3>Today's priorities</h3><div class="muted">Choose what matters most today</div></div><button class="btn sm" onclick="go('planner')">+ Add task</button></div><div id="dashTasks"></div></div><div class="card"><div class="head"><div><h3>Your habits</h3><div class="muted">Consistency beats perfection</div></div><button class="btn alt sm" onclick="go('habits')">View all</button></div><div id="dashHabits"></div></div></div><div><div class="card"><div class="head"><div><h3>Goal progress</h3><div class="muted">Keep your bigger picture in sight</div></div><button class="btn alt sm" onclick="go('goals')">Manage</button></div><div id="dashGoals"></div></div><div class="card"><div class="head"><h3>Quick tools</h3></div><div class="quickgrid"><button class="quick" onclick="go('planner')">🗓️<b>Plan my day</b><small>Organize priorities</small></button><button class="quick" onclick="go('habits')">🌱<b>Build a habit</b><small>Track daily progress</small></button><button class="quick" onclick="go('focus')">⏱️<b>Focus timer</b><small>Work with intention</small></button><button class="quick" onclick="go('focus')">💡<b>Make a decision</b><small>Think it through</small></button></div></div></div></div></section>
 <section class="view" id="planner"><div class="card"><div class="head"><div><h3>Daily planner</h3><div class="muted">Capture tasks and turn plans into progress.</div></div><span class="tag" id="pdate"></span></div><form class="form" id="taskForm"><input class="field" id="taskInput" placeholder="What needs to get done?" required><select class="field" id="priority" style="max-width:130px"><option>Normal</option><option>Important</option><option>High</option></select><button class="btn">Add</button></form><div id="tasks"></div></div></section>
 <section class="view" id="habits"><div class="card"><h3>Habit tracker</h3><div class="muted">Show up for the small things that matter.</div><form class="form" id="habitForm"><input class="field" id="habitInput" placeholder="e.g. Read 10 pages" required><button class="btn">Add habit</button></form><div id="habitsList"></div></div></section>
 <section class="view" id="goals"><div class="card"><h3>Goals that move you forward</h3><div class="muted">Break big ambitions into visible progress.</div><form class="form" id="goalForm"><input class="field" id="goalInput" placeholder="Name your goal" required><button class="btn">Add goal</button></form><div id="goalsList"></div></div></section>
 <section class="view" id="routines"><div class="card"><h3>Routine builder</h3><div class="muted">Create a simple rhythm for your day.</div><form class="form" id="routineForm"><input class="field" id="routineInput" placeholder="Add a routine step" required><select class="field" id="period" style="max-width:130px"><option>Morning</option><option>Afternoon</option><option>Evening</option></select><button class="btn">Add</button></form><div id="routinesList"></div></div></section>
 <section class="view" id="focus"><div class="columns"><div class="card timer"><h3>Focus timer</h3><div class="muted">Give one thing your full attention.</div><div class="clock" id="clock">25:00</div><button class="btn" id="start">Start focus</button> <button class="btn alt" id="reset">Reset</button><div class="muted" style="margin-top:12px">Completed focus minutes: <b id="focusTotal">0</b></div></div><div class="card"><h3>Decision maker</h3><div class="muted">Clarify the choice before you act.</div><textarea class="field" id="optionA" rows="2" placeholder="Option A" style="margin-top:12px"></textarea><textarea class="field" id="optionB" rows="2" placeholder="Option B" style="margin-top:8px"></textarea><textarea class="field" id="values" rows="2" placeholder="What matters most to you?" style="margin-top:8px"></textarea><button class="btn" id="compare" style="margin-top:9px">Compare options</button><div class="decisionout" id="decision"></div></div></div></section><div class="footer">LifePilot · Your Life, Planned Better · Your data stays in this browser on this device.</div></main></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const $=id=>document.getElementById(id),now=new Date(),key=now.toISOString().slice(0,10);$('today').textContent=now.toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'}).toUpperCase();$('date').textContent=now.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});$('pdate').textContent=now.toLocaleDateString(undefined,{month:'short',day:'numeric'});
 let d={};try{d=JSON.parse(localStorage.getItem('lifepilot')||'{}')}catch{}d.tasks=d.tasks||[];d.habits=d.habits||[{id:1,name:'Drink a glass of water',days:[]},{id:2,name:'Read for 10 minutes',days:[]},{id:3,name:'Move your body',days:[]}];d.goals=d.goals||[];d.routines=d.routines||[];d.focus=d.focus||0;const persist=()=>{localStorage.setItem('lifepilot',JSON.stringify(d));render()},esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));function go(id){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.view===id));$('title').textContent=({dashboard:"Good day. Let's make it count.",planner:'Daily planner',habits:'Habit tracker',goals:'Your goals',routines:'Build your routines',focus:'Focus & decisions'})[id];scrollTo({top:0,behavior:'smooth'})}document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.view));
@@ -20,4 +23,100 @@ let goal=x=>'<div class="goal"><div class="goalrow"><span>'+esc(x.name)+'</span>
 $('taskForm').onsubmit=e=>{e.preventDefault();d.tasks.push({id:Date.now(),name:$('taskInput').value.trim(),priority:$('priority').value,done:false});$('taskInput').value='';persist()};$('habitForm').onsubmit=e=>{e.preventDefault();d.habits.push({id:Date.now(),name:$('habitInput').value.trim(),days:[]});$('habitInput').value='';persist()};$('goalForm').onsubmit=e=>{e.preventDefault();d.goals.push({id:Date.now(),name:$('goalInput').value.trim(),progress:0});$('goalInput').value='';persist()};$('routineForm').onsubmit=e=>{e.preventDefault();d.routines.push({id:Date.now(),name:$('routineInput').value.trim(),period:$('period').value,done:false});$('routineInput').value='';persist()};
 function toggleTask(id){let x=d.tasks.find(x=>x.id===id);x.done=!x.done;persist()}function toggleHabit(id){let x=d.habits.find(x=>x.id===id);x.days=x.days.includes(key)?x.days.filter(v=>v!==key):[...x.days,key];persist()}function setGoal(id,v){d.goals.find(x=>x.id===id).progress=+v;localStorage.setItem('lifepilot',JSON.stringify(d));render()}function toggleRoutine(id){let x=d.routines.find(x=>x.id===id);x.done=!x.done;persist()}function removeItem(type,id){d[type]=d[type].filter(x=>x.id!==id);persist()}
 let seconds=1500,timer=null;function tick(){$('clock').textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0')}$('start').onclick=()=>{if(timer){clearInterval(timer);timer=null;$('start').textContent='Resume';return}$('start').textContent='Pause';timer=setInterval(()=>{seconds--;tick();if(seconds<=0){clearInterval(timer);timer=null;d.focus+=25;persist();seconds=1500;tick();$('start').textContent='Start focus';alert('Focus session complete. Great work!')}},1000)};$('reset').onclick=()=>{clearInterval(timer);timer=null;seconds=1500;tick();$('start').textContent='Start focus'};$('compare').onclick=()=>{let a=$('optionA').value.trim(),b=$('optionB').value.trim(),v=$('values').value.trim();if(!a||!b){alert('Enter both options first.');return}$('decision').style.display='block';$('decision').textContent='Compare “'+a+'” with “'+b+'”. Which best supports what matters to you'+(v?' — '+v:'')+'? Consider benefits, costs and your priorities. There is no automatic right answer.'};render();tick();
+</script>
+<script>
+(function(){
+ const SUPABASE_URL='https://dnctvomzuptfdwgfqjub.supabase.co';
+ const SUPABASE_PUBLISHABLE_KEY='sb_publishable_rb19P6tCNnNwwsZhayseBw_gvH-0B8F';
+ const client=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+ let currentUser=null, syncing=false, syncTimer=null;
+ const status=(msg)=>{const el=document.getElementById('authStatus');if(el)el.textContent=msg};
+ const setBusy=(busy)=>['signInBtn','signUpBtn'].forEach(id=>{const el=document.getElementById(id);if(el)el.disabled=busy});
+ const hasData=x=>x&&(['tasks','habits','goals','routines'].some(k=>Array.isArray(x[k])&&x[k].length)||Number(x.focus)>0);
+ function mergeData(local,cloud){
+   const out={...cloud,...local};
+   ['tasks','habits','goals','routines'].forEach(k=>{
+     const map=new Map();
+     [...(Array.isArray(cloud[k])?cloud[k]:[]),...(Array.isArray(local[k])?local[k]:[])].forEach(item=>{
+       const old=map.get(String(item.id));
+       if(k==='habits'&&old){map.set(String(item.id),{...old,...item,days:[...new Set([...(old.days||[]),...(item.days||[])])]});}
+       else map.set(String(item.id),{...old,...item});
+     });
+     out[k]=[...map.values()];
+   });
+   out.focus=Math.max(Number(local.focus)||0,Number(cloud.focus)||0);
+   return out;
+ }
+ async function pushCloud(){
+   if(!currentUser||syncing)return;
+   syncing=true;
+   try{
+     const {error}=await client.from('lifepilot_user_data').upsert({user_id:currentUser.id,app_data:d,updated_at:new Date().toISOString()},{onConflict:'user_id'});
+     if(error)throw error;
+     status('☁ Synced securely. Your LifePilot data is backed up to your account.');
+   }catch(e){status('Cloud sync issue: '+(e.message||'Please check your Supabase table and policies.'));}
+   finally{syncing=false;}
+ }
+ function scheduleSync(){
+   if(!currentUser)return;
+   clearTimeout(syncTimer);
+   syncTimer=setTimeout(pushCloud,900);
+ }
+ const originalSetItem=Storage.prototype.setItem;
+ Storage.prototype.setItem=function(k,v){originalSetItem.call(this,k,v);if(k==='lifepilot')scheduleSync();};
+ async function loadUser(user){
+   currentUser=user;
+   document.getElementById('authUser').textContent='Signed in as '+user.email;
+   document.getElementById('signInBtn').hidden=true;
+   document.getElementById('signUpBtn').hidden=true;
+   document.getElementById('signOutBtn').hidden=false;
+   status('Loading your private cloud data…');
+   try{
+     const {data,error}=await client.from('lifepilot_user_data').select('app_data').eq('user_id',user.id).maybeSingle();
+     if(error)throw error;
+     const local=JSON.parse(localStorage.getItem('lifepilot')||'{}');
+     const cloud=data&&data.app_data?data.app_data:{};
+     d=mergeData(local,cloud);
+     localStorage.setItem('lifepilot',JSON.stringify(d));
+     render();
+     await pushCloud();
+   }catch(e){status('Could not load cloud data: '+(e.message||'Check that supabase/schema.sql has been run.'));}
+ }
+ async function init(){
+   try{
+     const {data,error}=await client.auth.getSession();
+     if(error)throw error;
+     if(data.session)await loadUser(data.session.user);
+     else status('Not signed in. Your current browser data is kept locally; sign in to enable cloud sync.');
+     client.auth.onAuthStateChange((event,session)=>{
+       if(event==='SIGNED_IN'&&session&&!currentUser){setTimeout(()=>loadUser(session.user),0);}
+       if(event==='SIGNED_OUT'){currentUser=null;document.getElementById('authUser').textContent='Signed out';document.getElementById('signInBtn').hidden=false;document.getElementById('signUpBtn').hidden=false;document.getElementById('signOutBtn').hidden=true;status('Signed out. This device’s local data is still available.');}
+     });
+   }catch(e){status('Supabase connection error: '+(e.message||'Check the project URL and publishable key.'));}
+ }
+ document.getElementById('signInBtn').addEventListener('click',async()=>{
+   const email=document.getElementById('authEmail').value.trim(),password=document.getElementById('authPassword').value;
+   if(!email||!password){status('Enter your email and password first.');return;}
+   setBusy(true);status('Signing in…');
+   const {data,error}=await client.auth.signInWithPassword({email,password});
+   setBusy(false);
+   if(error){status(error.message);return;}
+   if(data.user)await loadUser(data.user);
+ });
+ document.getElementById('signUpBtn').addEventListener('click',async()=>{
+   const email=document.getElementById('authEmail').value.trim(),password=document.getElementById('authPassword').value;
+   if(!email||password.length<6){status('Enter a valid email and a password with at least 6 characters.');return;}
+   setBusy(true);status('Creating your account…');
+   const {data,error}=await client.auth.signUp({email,password,options:{emailRedirectTo:location.origin}});
+   setBusy(false);
+   if(error){status(error.message);return;}
+   if(data.session&&data.user)await loadUser(data.user);
+   else status('Account created. Check your email to confirm your address, then sign in here.');
+ });
+ document.getElementById('signOutBtn').addEventListener('click',async()=>{
+   const {error}=await client.auth.signOut();
+   if(error)status(error.message);
+ });
+ init();
+})();
 </script></body></html>
