@@ -1,21 +1,40 @@
 # LifePilot Supabase setup
 
-LifePilot currently stores data in the browser. This setup adds secure per-user cloud sync.
+LifePilot's frontend now includes Supabase email sign-in/sign-up and per-user cloud sync.
 
-## Important
-- Create a **new Supabase project dedicated to LifePilot**. Do not reuse the BillDocs project.
-- Never put a Supabase service-role/secret key in website code, GitHub, or chat.
-- The browser may use only the project's **Project URL** and **anon/publishable key**. Row Level Security (RLS) protects each user's row.
+## 1. Dedicated project
+Use the separate Supabase project named **LifePilot**. Do not use the BillDocs project.
 
-## Setup
-1. Create a new Supabase project.
-2. In Authentication > Providers, enable Email. Configure email confirmation as you prefer.
-3. In SQL Editor, run the contents of `supabase/schema.sql`.
-4. In Project Settings > API, copy the Project URL and the anon/publishable key.
-5. Keep those two public client values ready for the LifePilot frontend configuration. Do not copy the service-role key.
+## 2. Create the cloud table and access policies
+1. Open this LifePilot project in Supabase.
+2. Open **SQL Editor** → **New query**.
+3. Open `supabase/schema.sql` in this GitHub repository, copy the complete SQL, paste it into the SQL Editor, and click **Run**.
+4. Confirm that `public.lifepilot_user_data` exists.
 
-## Data model
-Each authenticated user gets one row in `public.lifepilot_user_data`. The app's tasks, habits, goals, routines and focus totals are stored in `app_data` (JSONB). RLS policies restrict select/insert/update to `auth.uid() = user_id`.
+The table has Row Level Security (RLS) enabled. Policies limit each authenticated user to their own row (`auth.uid() = user_id`). Do not disable RLS.
 
-## Current state
-The live site remains unchanged until the project URL and anon/publishable key are configured and the sign-in/cloud-sync integration is tested. Existing browser-local data should be preserved and migrated only after sign-in succeeds.
+## 3. Configure email authentication
+1. Open **Authentication → Providers** and make sure **Email** is enabled.
+2. Open **Authentication → URL Configuration**.
+3. Set the Site URL to `https://lifepilot-bw3.pages.dev`.
+4. Add `https://lifepilot-bw3.pages.dev/**` to the Redirect URLs allow list (or the equivalent exact URL pattern accepted by the dashboard).
+5. Choose whether to require email confirmation. If enabled, users must confirm their email before signing in.
+
+## 4. Frontend keys and security
+The LifePilot frontend is configured with the project's URL and the Supabase **publishable** key. These are browser-safe client values when RLS is correctly enabled.
+
+**Never put a service-role key, secret key, database password, or Postgres connection string in frontend code, GitHub, or a public repository.**
+
+## 5. Test sign-in and sync
+1. Wait for the Cloudflare Pages deployment after the latest GitHub commit.
+2. Open `https://lifepilot-bw3.pages.dev`.
+3. Create an account with an email address and password.
+4. If email confirmation is enabled, confirm the email, then sign in.
+5. Add a test task, then refresh the page and check that it remains.
+6. Sign in with the same account on another device to verify cloud sync.
+
+## Data safety
+- Before sign-in, existing tasks/habits/goals/routines/focus data remains in that browser's local storage.
+- On first sign-in, local and cloud lists are merged by item ID and uploaded to that user's row. Habit check-in dates are combined; focus totals use the larger value to avoid losing progress.
+- Cloud sync requires the SQL in `supabase/schema.sql` to be run successfully first.
+- Never run this SQL in the BillDocs project.
