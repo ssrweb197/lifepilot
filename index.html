@@ -36,6 +36,13 @@
 }
 </style>  <meta name="google-site-verification" content="at-Vs7IHz7yNWeQheID5grHQKL-FY39okOE-QiLDeRo" />
 </head><body><div class="layout"><aside class="side"><div class="brand"><span class="mark">L</span>LifePilot</div><div class="label">YOUR WORKSPACE</div><nav class="nav"><button class="active" data-view="dashboard">⌂ &nbsp; Dashboard</button><button data-view="planner">▤ &nbsp; Daily Planner</button><button data-view="habits">✦ &nbsp; Habits</button><button data-view="goals">◎ &nbsp; Goals</button><button data-view="routines">◷ &nbsp; Routines</button><button data-view="focus">✧ &nbsp; Focus & Decisions</button></nav><div class="sidefoot">✦ Small steps make remarkable progress.<br><b>Make today count.</b></div></aside><main class="main"><header class="top"><div><div class="muted" id="today"></div><h1 id="title">Good day. Let's make it count.</h1></div><div class="avatar">LP</div></header><section class="authbar"><div class="authmeta"><b>☁ LifePilot account & sync</b><div class="muted" id="authUser">Sign in to sync your planner across devices.</div></div><input class="field" id="authUsername" type="text" autocomplete="name" placeholder="Username / Full name" aria-label="Username" hidden><input class="field" id="authEmail" type="email" autocomplete="email" placeholder="Email address" aria-label="Email address"><input class="field" id="authPassword" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password"><input class="field" id="authConfirmPassword" type="password" autocomplete="new-password" placeholder="Confirm password" aria-label="Confirm password" hidden><button class="btn sm" id="signInBtn">Sign in</button><button class="btn alt sm" id="signUpBtn">Create account</button><button class="btn alt sm" id="backToSignInBtn" hidden>Back to sign in</button><button class="btn alt sm" id="forgotPasswordBtn">Forgot password?</button><button class="btn alt sm" id="signOutBtn" hidden>Sign out</button><div class="authstatus" id="authStatus" role="status">Your existing browser data stays on this device until you sign in and sync.</div></section>
+<section class="authbar backupbar" aria-label="Data backup">
+  <div class="authmeta"><b>📦 Your data, in your control</b><div class="muted">Download a backup or restore it later on this device.</div></div>
+  <button class="btn alt sm" id="exportDataBtn" type="button">Download backup (JSON)</button>
+  <button class="btn alt sm" id="importDataBtn" type="button">Restore backup</button>
+  <input id="importDataFile" type="file" accept="application/json,.json" hidden>
+  <div class="authstatus" id="backupStatus" role="status">Your tasks, habits, goals, routines and focus totals stay saved in this browser. Signed-in accounts can also sync to the cloud.</div>
+</section>
 <section class="view active" id="dashboard"><div class="hero"><div><h2>Plan with purpose. Progress with ease.</h2><p>A little progress every day adds up to big results.</p></div><div class="date" id="date"></div></div><div class="stats"><div class="stat"><div class="muted">Tasks completed</div><strong id="sTasks">0/0</strong><span class="green">Keep moving forward</span></div><div class="stat"><div class="muted">Active habits</div><strong id="sHabits">0</strong><span class="green">Build consistency</span></div><div class="stat"><div class="muted">Goals in progress</div><strong id="sGoals">0</strong><span class="green">One step at a time</span></div><div class="stat"><div class="muted">Focus minutes</div><strong id="sFocus">0</strong><span class="green">Be present</span></div></div><div class="columns"><div><div class="card"><div class="head"><div><h3>Today's priorities</h3><div class="muted">Choose what matters most today</div></div><button class="btn sm" onclick="go('planner')">+ Add task</button></div><div id="dashTasks"></div></div><div class="card"><div class="head"><div><h3>Your habits</h3><div class="muted">Consistency beats perfection</div></div><button class="btn alt sm" onclick="go('habits')">View all</button></div><div id="dashHabits"></div></div></div><div><div class="card"><div class="head"><div><h3>Goal progress</h3><div class="muted">Keep your bigger picture in sight</div></div><button class="btn alt sm" onclick="go('goals')">Manage</button></div><div id="dashGoals"></div></div><div class="card"><div class="head"><h3>Quick tools</h3></div><div class="quickgrid"><button class="quick" onclick="go('planner')">🗓️<b>Plan my day</b><small>Organize priorities</small></button><button class="quick" onclick="go('habits')">🌱<b>Build a habit</b><small>Track daily progress</small></button><button class="quick" onclick="go('focus')">⏱️<b>Focus timer</b><small>Work with intention</small></button><button class="quick" onclick="go('focus')">💡<b>Make a decision</b><small>Think it through</small></button></div></div></div></div></section>
 <section class="view" id="planner"><div class="card"><div class="head"><div><h3>Daily planner</h3><div class="muted">Capture tasks and turn plans into progress.</div></div><span class="tag" id="pdate"></span></div><form class="form" id="taskForm"><input class="field" id="taskInput" placeholder="What needs to get done?" required><select class="field" id="priority" style="max-width:130px"><option>Normal</option><option>Important</option><option>High</option></select><button class="btn">Add</button></form><div id="tasks"></div></div></section>
 <section class="view" id="habits"><div class="card"><h3>Habit tracker</h3><div class="muted">Show up for the small things that matter.</div><form class="form" id="habitForm"><input class="field" id="habitInput" placeholder="e.g. Read 10 pages" required><button class="btn">Add habit</button></form><div id="habitsList"></div></div></section>
@@ -167,4 +174,49 @@ let seconds=1500,timer=null;function tick(){$('clock').textContent=String(Math.f
  });
  init();
 })();
-</script></body></html>
+</script>
+<script>
+(function(){
+ const exportBtn=document.getElementById('exportDataBtn');
+ const importBtn=document.getElementById('importDataBtn');
+ const fileInput=document.getElementById('importDataFile');
+ const status=document.getElementById('backupStatus');
+ if(!exportBtn||!importBtn||!fileInput)return;
+ exportBtn.addEventListener('click',()=>{
+   try{
+     const payload={app:'LifePilot',version:1,exportedAt:new Date().toISOString(),data:JSON.parse(localStorage.getItem('lifepilot')||'{}')};
+     const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+     const url=URL.createObjectURL(blob),a=document.createElement('a');
+     a.href=url;a.download='lifepilot-backup-'+new Date().toISOString().slice(0,10)+'.json';
+     document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+     status.textContent='Backup downloaded. Keep the JSON file somewhere safe.';
+   }catch(e){status.textContent='Could not create backup. Please try again.';}
+ });
+ importBtn.addEventListener('click',()=>fileInput.click());
+ fileInput.addEventListener('change',async()=>{
+   const file=fileInput.files&&fileInput.files[0];if(!file)return;
+   try{
+     const parsed=JSON.parse(await file.text()),incoming=parsed&&parsed.data?parsed.data:parsed;
+     if(!incoming||typeof incoming!=='object'||Array.isArray(incoming))throw new Error('invalid');
+     for(const k of ['tasks','habits','goals','routines'])if(incoming[k]!==undefined&&!Array.isArray(incoming[k]))throw new Error('invalid');
+     const current=JSON.parse(localStorage.getItem('lifepilot')||'{}');
+     const merged={...current,...incoming};
+     for(const k of ['tasks','habits','goals','routines']){
+       const byId=new Map();
+       [...(Array.isArray(current[k])?current[k]:[]),...(Array.isArray(incoming[k])?incoming[k]:[])].forEach(item=>{
+         if(!item||item.id===undefined)return;
+         const id=String(item.id),old=byId.get(id);
+         if(k==='habits'&&old)byId.set(id,{...old,...item,days:[...new Set([...(old.days||[]),...(item.days||[])])]});
+         else byId.set(id,{...old,...item});
+       });
+       merged[k]=[...byId.values()];
+     }
+     merged.focus=Math.max(Number(current.focus)||0,Number(incoming.focus)||0);
+     if(!confirm('Restore and merge this backup with your current LifePilot data? Existing items will be kept.'))return;
+     d=merged;persist();status.textContent='Backup restored and merged successfully. Your existing items were kept.';
+   }catch(e){status.textContent='That file is not a valid LifePilot JSON backup.';}
+   finally{fileInput.value='';}
+ });
+})();
+</script>
+</body></html>
