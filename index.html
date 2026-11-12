@@ -34,6 +34,51 @@
   .form .field{min-width:0;flex:1 1 100%}
   .quickgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+/* LifePilot visual polish */
+:root{--primary:#6958e8;--p:#6254df;--ink:#202744;--muted:#77819a;--line:#e8eaf3;--bg:#f5f6fb}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:-.01em}
+.layout{grid-template-columns:248px minmax(0,1fr)}
+.side{padding:27px 18px;box-shadow:8px 0 28px #26345b06}
+.brand{display:flex;align-items:center;font-size:23px;letter-spacing:-1.2px;padding-bottom:34px}
+.mark{box-shadow:0 7px 18px #6958e83a}
+.nav button{transition:background .18s ease,color .18s ease,transform .18s ease}
+.nav button:hover{transform:translateX(2px)}
+.nav button.active{box-shadow:inset 3px 0 0 var(--p);font-weight:750}
+.main{padding-top:34px}
+.top{margin-bottom:28px}
+.top h1{font-size:clamp(23px,2.2vw,30px);font-weight:760;letter-spacing:-1.1px}
+.avatar{box-shadow:0 5px 15px #6958e81c}
+.hero{background:radial-gradient(circle at 88% 18%,#ffffff28,transparent 28%),linear-gradient(115deg,#574bd4 0%,#795be5 58%,#9868eb 100%);box-shadow:0 14px 35px #6555df26;padding:30px 32px}
+.hero h2{font-size:25px;letter-spacing:-.7px}
+.hero p{font-size:14px;opacity:.94}
+.date{background:#ffffff24;border:1px solid #ffffff2b;padding:9px 14px}
+.stat,.card{border-color:#e9ebf4;box-shadow:0 5px 20px #27345b08;transition:transform .18s ease,box-shadow .18s ease}
+.stat:hover,.card:hover{box-shadow:0 10px 28px #27345b0d}
+.stat{padding:20px}
+.stat strong{font-size:29px;letter-spacing:-1px}
+.stat .muted{font-weight:650}
+.card{padding:20px}
+.head h3,.card h3{font-size:16px;letter-spacing:-.25px}
+.btn{background:linear-gradient(135deg,#6254df,#8064ec);box-shadow:0 4px 10px #6958e81c;transition:transform .16s ease,box-shadow .16s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 7px 16px #6958e82c}
+.btn.alt{background:#f0efff;box-shadow:none}
+.field{background:#fff;transition:border-color .15s,box-shadow .15s}
+.field:focus{border-color:#9387f0;box-shadow:0 0 0 3px #6958e817}
+.task,.habit,.routine,.goal{padding:13px 2px}
+.task:hover,.habit:hover,.routine:hover{background:#fafaff}
+.tag{font-weight:700}
+.quick{transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.quick:hover{transform:translateY(-2px);border-color:#c9c2ff;box-shadow:0 8px 18px #6958e812}
+.progress{background:#eeeff7;height:8px}
+.progress span{border-radius:20px}
+.authbar{box-shadow:0 5px 20px #27345b06}
+.footer{line-height:2}
+.footer a{color:#737d96;text-decoration:none}
+.footer a:hover{color:var(--p);text-decoration:underline}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.side{box-shadow:0 5px 18px #26345b08}.main{padding-top:20px}.hero{padding:22px}.card{padding:16px}.stat{padding:15px}}
+@media(max-width:520px){.top h1{font-size:20px}.hero h2{font-size:20px}.stat strong{font-size:25px}.nav button.active{box-shadow:inset 0 -3px 0 var(--p)}.main{padding-bottom:26px}}
+
 </style>  <meta name="google-site-verification" content="at-Vs7IHz7yNWeQheID5grHQKL-FY39okOE-QiLDeRo" />
 </head><body><div class="layout"><aside class="side"><div class="brand"><span class="mark">L</span>LifePilot</div><div class="label">YOUR WORKSPACE</div><nav class="nav"><button class="active" data-view="dashboard">⌂ &nbsp; Dashboard</button><button data-view="planner">▤ &nbsp; Daily Planner</button><button data-view="habits">✦ &nbsp; Habits</button><button data-view="goals">◎ &nbsp; Goals</button><button data-view="routines">◷ &nbsp; Routines</button><button data-view="focus">✧ &nbsp; Focus & Decisions</button></nav><div class="sidefoot">✦ Small steps make remarkable progress.<br><b>Make today count.</b></div></aside><main class="main"><header class="top"><div><div class="muted" id="today"></div><h1 id="title">Good day. Let's make it count.</h1></div><div class="avatar">LP</div></header><section class="authbar"><div class="authmeta"><b>☁ LifePilot account & sync</b><div class="muted" id="authUser">Sign in to sync your planner across devices.</div></div><input class="field" id="authUsername" type="text" autocomplete="name" placeholder="Username / Full name" aria-label="Username" hidden><input class="field" id="authEmail" type="email" autocomplete="email" placeholder="Email address" aria-label="Email address"><input class="field" id="authPassword" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password"><input class="field" id="authConfirmPassword" type="password" autocomplete="new-password" placeholder="Confirm password" aria-label="Confirm password" hidden><button class="btn sm" id="signInBtn">Sign in</button><button class="btn alt sm" id="signUpBtn">Create account</button><button class="btn alt sm" id="backToSignInBtn" hidden>Back to sign in</button><button class="btn alt sm" id="forgotPasswordBtn">Forgot password?</button><button class="btn alt sm" id="signOutBtn" hidden>Sign out</button><div class="authstatus" id="authStatus" role="status">Your existing browser data stays on this device until you sign in and sync.</div></section>
 <section class="authbar backupbar" aria-label="Data backup">
@@ -51,7 +96,7 @@
 <section class="view" id="focus"><div class="columns"><div class="card timer"><h3>Focus timer</h3><div class="muted">Give one thing your full attention.</div><div class="clock" id="clock">25:00</div><button class="btn" id="start">Start focus</button> <button class="btn alt" id="reset">Reset</button><div class="muted" style="margin-top:12px">Completed focus minutes: <b id="focusTotal">0</b></div></div><div class="card"><h3>Decision maker</h3><div class="muted">Clarify the choice before you act.</div><textarea class="field" id="optionA" rows="2" placeholder="Option A" style="margin-top:12px"></textarea><textarea class="field" id="optionB" rows="2" placeholder="Option B" style="margin-top:8px"></textarea><textarea class="field" id="values" rows="2" placeholder="What matters most to you?" style="margin-top:8px"></textarea><button class="btn" id="compare" style="margin-top:9px">Compare options</button><div class="decisionout" id="decision"></div></div></div></section><div class="footer">LifePilot · Your Life, Planned Better<br><div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:10px"><a href="about.html">About Us</a><a href="contact.html">Contact Us</a><a href="privacy.html">Privacy Policy</a><a href="disclaimer.html">Disclaimer</a><a href="terms.html">Terms & Conditions</a><a href="faq.html">FAQ</a><a href="support.html">Help & Support</a></div><div style="margin-top:9px">Contact: <a href="mailto:brandblitzmotivation@gmail.com">brandblitzmotivation@gmail.com</a></div></div></main></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const $=id=>document.getElementById(id),now=new Date(),key=now.toISOString().slice(0,10);$('today').textContent=now.toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'}).toUpperCase();$('date').textContent=now.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});$('pdate').textContent=now.toLocaleDateString(undefined,{month:'short',day:'numeric'});
+const $=id=>document.getElementById(id),now=new Date(),localDateKey=(date)=>{const y=date.getFullYear(),m=String(date.getMonth()+1).padStart(2,'0'),day=String(date.getDate()).padStart(2,'0');return y+'-'+m+'-'+day},key=localDateKey(now);$('today').textContent=now.toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'}).toUpperCase();$('date').textContent=now.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});$('pdate').textContent=now.toLocaleDateString(undefined,{month:'short',day:'numeric'});$('title').textContent=(now.getHours()<12?'Good morning':now.getHours()<17?'Good afternoon':'Good evening')+'. Let’s make it count.';
 let d={};try{d=JSON.parse(localStorage.getItem('lifepilot')||'{}')}catch{}d.tasks=d.tasks||[];d.habits=d.habits||[{id:1,name:'Drink a glass of water',days:[]},{id:2,name:'Read for 10 minutes',days:[]},{id:3,name:'Move your body',days:[]}];d.goals=d.goals||[];d.routines=d.routines||[];d.focus=d.focus||0;const persist=()=>{localStorage.setItem('lifepilot',JSON.stringify(d));render()},esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));function go(id){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.view===id));$('title').textContent=({dashboard:"Good day. Let's make it count.",planner:'Daily planner',habits:'Habit tracker',goals:'Your goals',routines:'Build your routines',focus:'Focus & decisions'})[id];scrollTo({top:0,behavior:'smooth'})}document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.view));
 function render(){let done=d.tasks.filter(x=>x.done).length;$('sTasks').textContent=done+'/'+d.tasks.length;$('sHabits').textContent=d.habits.length;$('sGoals').textContent=d.goals.filter(x=>x.progress<100).length;$('sFocus').textContent=d.focus;$('focusTotal').textContent=d.focus;
 let task=x=>'<div class="task"><button class="check '+(x.done?'done':'')+'" onclick="toggleTask('+x.id+')">'+(x.done?'✓':'')+'</button><div class="taskname '+(x.done?'done':'')+'">'+esc(x.name)+'</div><span class="tag">'+esc(x.priority)+'</span><button class="del" onclick="removeItem(\'tasks\','+x.id+')">×</button></div>';$('dashTasks').innerHTML=d.tasks.length?d.tasks.slice(0,5).map(task).join(''):'<div class="empty">Your day is a blank canvas. Add your first task.</div>';$('tasks').innerHTML=d.tasks.length?d.tasks.map(task).join(''):'<div class="empty">No tasks yet. Add one above.</div>';
@@ -160,7 +205,7 @@ let seconds=1500,timer=null;function tick(){$('clock').textContent=String(Math.f
  byId('backToSignInBtn').addEventListener('click',()=>setSignupMode(false));
  byId('forgotPasswordBtn').addEventListener('click',async()=>{
    const email=byId('authEmail').value.trim();
-   if(!email||!/\\S+@\\S+\\.\\S+/.test(email)){status('Enter your registered email address first.');return;}
+   if(!email||!/^\\S+@\\S+\\.\\S+$/.test(email)){status('Enter your registered email address first.');return;}
    if(!client){status('Password reset is not ready. Please refresh the page.');return;}
    setBusy(true);status('Sending password reset email…');
    try{const {error}=await client.auth.resetPasswordForEmail(email,{redirectTo:location.origin});if(error)throw error;status('Password reset email sent. Check your inbox and Spam folder.');}
